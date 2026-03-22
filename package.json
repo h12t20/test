@@ -2,7 +2,7 @@
   "name": "test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https:/h12t20.github.io/test/",
+  "homepage": "git@github.com:h12t20/test.git",
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@testing-library/dom": "^10.4.1",
