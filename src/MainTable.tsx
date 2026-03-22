@@ -47,7 +47,7 @@ const MainTable: React.FC = () => {
             title: 'Возраст',
             dataIndex: 'age',
             defaultSortOrder: 'descend',
-            sorter: (a, b) => a.date > b.date? -1: 1,
+            sorter: (a, b) => a.age > b.age? -1: 1,
         },
         {
             title: 'Action',

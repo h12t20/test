@@ -9,7 +9,7 @@ const AddRowButton: React.FC = () => {
     };
     return (
         <Input
-            placeholder="Поиск по всем полям..."
+            placeholder="Поиск по всем полям"
             onChange={handleSearch}
         />
     )
