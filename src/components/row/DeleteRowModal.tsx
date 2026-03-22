@@ -1,7 +1,7 @@
 import React, {useCallback} from "react";
 import { Button, Modal } from 'antd';
-import useTableData from "./store/useTableData";
-import useOpenModals from "./store/useOpenModals";
+import useTableData from "../../store/useTableData";
+import useOpenModals from "../../store/useOpenModals";
 
 const DeleteRowModal: React.FC = () => {
     const {deleteRow} = useTableData();

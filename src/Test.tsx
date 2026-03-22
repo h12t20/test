@@ -1,11 +1,11 @@
 import React from 'react';
-import MainTable from "./MainTable";
-import AddRowButton from "./AddRowButton";
-import AddOrEditRowModal from "./AddOrEditRowModal";
+import MainTable from "./components/table/MainTable";
+import AddRowButton from "./components/row/AddRowButton";
+import AddOrEditRowModal from "./components/row/AddOrEditRowModal";
 import useRowData from "./store/useRowData";
 import useOpenModals from "./store/useOpenModals";
-import DeleteRowModal from "./DeleteRowModal";
-import SearchInput from "./SearchInput";
+import DeleteRowModal from "./components/row/DeleteRowModal";
+import SearchInput from "./components/searchInput/SearchInput";
 
 function Test() {
     const {openAddRowModal, setOpenAddRowModal} = useOpenModals();

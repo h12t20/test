@@ -1,4 +1,4 @@
-import {DataType} from "../MainTable";
+import {DataType} from "../components/table/MainTable";
 import { create } from 'zustand';
 import {Key} from "react";
 

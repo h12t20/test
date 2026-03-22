@@ -1,11 +1,11 @@
 import React from 'react';
 import {Button, Form, Input, Space, DatePicker} from 'antd';
-import {DataType} from "./MainTable";
-import useRowData from "./store/useRowData";
+import {DataType} from "../table/MainTable";
+import useRowData from "../../store/useRowData";
 import { useForm, Controller } from 'react-hook-form';
-import useTableData from "./store/useTableData";
+import useTableData from "../../store/useTableData";
 import { zodResolver } from '@hookform/resolvers/zod';
-import {RowFormType, tableRowSchema} from "./zod/schema";
+import {RowFormType, tableRowSchema} from "../../zod/schema";
 
 type Props = {
     handleCancel: () => void;

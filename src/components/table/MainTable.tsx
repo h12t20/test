@@ -2,11 +2,11 @@ import React, {Key, useCallback} from 'react';
 import {Space, Table} from 'antd';
 import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 import type { TableColumnsType } from 'antd';
-import useTableData from "./store/useTableData";
-import useRowData from "./store/useRowData";
-import useOpenModals from "./store/useOpenModals";
+import useTableData from "../../store/useTableData";
+import useRowData from "../../store/useRowData";
+import useOpenModals from "../../store/useOpenModals";
 import dayjs from "dayjs";
-import useSearchTableData from "./store/useSearchTableData";
+import useSearchTableData from "../../store/useSearchTableData";
 
 export type DataType = {
     key: Key;
