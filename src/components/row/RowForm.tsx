@@ -38,7 +38,7 @@ const RowForm: React.FC<Props> = memo(({handleCancel}) => {
 
 
     return (
-        <Form name="RowForm" layout="vertical" onFinish={handleSubmit(onSubmit)}>
+        <Form name="RowForm" id="RowForm" layout="vertical" onFinish={handleSubmit(onSubmit)}>
             <Form.Item<DataType>
                 label="Имя"
                 name="name"

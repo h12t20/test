@@ -50,7 +50,7 @@ const MainTable: React.FC = memo(() => {
             sorter: (a, b) => a.age > b.age? -1: 1,
         },
         {
-            title: 'Action',
+            title: 'Действие',
             key: 'action',
             render: (_, record) => {
                 const handleEdit = ()=> editRowHandler(record)
