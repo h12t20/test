@@ -6,6 +6,7 @@ import { useForm, Controller } from 'react-hook-form';
 import useTableData from "../../store/useTableData";
 import { zodResolver } from '@hookform/resolvers/zod';
 import {RowFormType, tableRowSchema} from "../../zod/schema";
+import { v4 as uuid4 } from 'uuid';
 
 type Props = {
     handleCancel: () => void;
@@ -28,7 +29,7 @@ const RowForm: React.FC<Props> = memo(({handleCancel}) => {
     const onSubmit = (data: DataType) => {
         const dataWithKey = {
             ...data,
-            key: Date.now()
+            key: uuid4()
         };
         const dataForSubmit = rowData? data: dataWithKey
         rowData ? changeRow(dataForSubmit): addNewRow(dataForSubmit);
