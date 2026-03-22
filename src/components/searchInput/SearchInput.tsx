@@ -1,7 +1,7 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, memo} from "react";
 import {Input} from 'antd';
 import useSearchTableData from "../../store/useSearchTableData";
-const AddRowButton: React.FC = () => {
+const AddRowButton: React.FC = memo(() => {
     const {setSearchValue} = useSearchTableData();
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
         const currValue = e.target.value.toLowerCase();
@@ -14,5 +14,5 @@ const AddRowButton: React.FC = () => {
         />
     )
 
-}
+})
 export default AddRowButton;

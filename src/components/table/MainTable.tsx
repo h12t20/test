@@ -1,4 +1,4 @@
-import React, {Key, useCallback} from 'react';
+import React, {Key, memo, useCallback} from 'react';
 import {Space, Table} from 'antd';
 import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 import type { TableColumnsType } from 'antd';
@@ -15,7 +15,7 @@ export type DataType = {
     age: string;
 }
 
-const MainTable: React.FC = () => {
+const MainTable: React.FC = memo(() => {
     const {tableData} = useTableData();
     const {searchValue} = useSearchTableData();
     const {setDeleteRowId} = useOpenModals();
@@ -71,6 +71,6 @@ const MainTable: React.FC = () => {
             showSorterTooltip={{ target: 'sorter-icon' }}
         />
     );
-}
+})
 
 export default MainTable;

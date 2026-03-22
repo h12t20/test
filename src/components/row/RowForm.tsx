@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Button, Form, Input, Space, DatePicker} from 'antd';
 import {DataType} from "../table/MainTable";
 import useRowData from "../../store/useRowData";
@@ -11,7 +11,7 @@ type Props = {
     handleCancel: () => void;
 }
 
-const RowForm: React.FC<Props> = ({handleCancel}) => {
+const RowForm: React.FC<Props> = memo(({handleCancel}) => {
     const {rowData} = useRowData();
     const {changeRow, addNewRow} = useTableData();
     const { control, handleSubmit, formState: { errors } } = useForm<RowFormType>({
@@ -95,6 +95,6 @@ const RowForm: React.FC<Props> = ({handleCancel}) => {
 
         </Form>
     )
-}
+})
 
 export default RowForm;
