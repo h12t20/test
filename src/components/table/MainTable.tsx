@@ -51,7 +51,7 @@ const MainTable: React.FC = memo(() => {
         },
         {
             title: 'Действие',
-            key: 'action',
+            dataIndex: 'action',
             render: (_, record) => {
                 const handleEdit = ()=> editRowHandler(record)
                 const handleDelete = ()=> deleteRowHandler(record.key)
