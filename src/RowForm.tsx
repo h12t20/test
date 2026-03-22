@@ -80,7 +80,6 @@ const RowForm: React.FC<Props> = ({handleCancel}) => {
                 name="age"
                 validateStatus={errors.age ? 'error' : ''}
                 help={errors.age?.message}
-
             >
                 <Controller
                     name="age"

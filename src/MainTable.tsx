@@ -1,7 +1,7 @@
 import React, {Key, useCallback} from 'react';
 import {Space, Table} from 'antd';
 import { CloseOutlined, EditOutlined } from '@ant-design/icons';
-import type { TableColumnsType, TableProps } from 'antd';
+import type { TableColumnsType } from 'antd';
 import useTableData from "./store/useTableData";
 import useRowData from "./store/useRowData";
 import useOpenModals from "./store/useOpenModals";
@@ -15,17 +15,18 @@ export type DataType = {
     age: string;
 }
 
-const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
-};
-
 const MainTable: React.FC = () => {
     const {tableData} = useTableData();
-    const {searchTableData, searchValue} = useSearchTableData();
+    const {searchValue} = useSearchTableData();
     const {setDeleteRowId} = useOpenModals();
     const {editRow} = useRowData();
     const deleteRowHandler = useCallback((id:Key)=>setDeleteRowId(id), [setDeleteRowId])
     const editRowHandler = useCallback((rowData:DataType)=>editRow(rowData), [editRow])
+    const filteredTableData = tableData?.filter(data =>
+            data.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+            data.date.format('DD.MM.YYYY').toLowerCase().includes(searchValue.toLowerCase()) ||
+            data.age.toLowerCase().includes(searchValue.toLowerCase())
+        )
     const columns: TableColumnsType<DataType> = [
         {
             title: 'Имя',
@@ -51,22 +52,22 @@ const MainTable: React.FC = () => {
         {
             title: 'Action',
             key: 'action',
-            render: (_, record) => (
-                <Space size="medium">
-                    <EditOutlined onClick={()=>editRowHandler(record)}/>
-                    <CloseOutlined onClick={()=>deleteRowHandler(record.key)}/>
-                </Space>
-            ),
+            render: (_, record) => {
+                const handleEdit = ()=> editRowHandler(record)
+                const handleDelete = ()=> deleteRowHandler(record.key)
+                return (
+                    <Space size="medium">
+                        <EditOutlined onClick={handleEdit}/>
+                        <CloseOutlined onClick={handleDelete}/>
+                    </Space>
+                )
+            }
         },
     ];
-    console.log(tableData)
-    console.log(searchTableData);
-    console.log(searchValue);
     return (
         <Table<DataType>
             columns={columns}
-            dataSource={searchTableData ?? tableData}
-            onChange={onChange}
+            dataSource={filteredTableData}
             showSorterTooltip={{ target: 'sorter-icon' }}
         />
     );
