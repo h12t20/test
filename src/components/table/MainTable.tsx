@@ -71,7 +71,7 @@ const MainTable: React.FC = memo(() => {
                 columns={columns}
                 dataSource={filteredTableData}
                 showSorterTooltip={{ target: 'sorter-icon' }}
-                scroll={{ x: 400 }}
+                scroll={{ x: 360 }}
             />
         </div>
     );
