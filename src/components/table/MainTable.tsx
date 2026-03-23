@@ -66,14 +66,11 @@ const MainTable: React.FC = memo(() => {
         },
     ];
     return (
-        <div className="max-w-full overflow-x-auto">
             <Table<DataType>
                 columns={columns}
                 dataSource={filteredTableData}
                 showSorterTooltip={{ target: 'sorter-icon' }}
-                scroll={{ x: 360 }}
             />
-        </div>
     );
 })
 
