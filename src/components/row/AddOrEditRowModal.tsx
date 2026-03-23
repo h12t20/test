@@ -17,6 +17,7 @@ const AddOrEditRowModal: React.FC = () => {
             title={`${!rowData? 'Добавление новой': 'Редактирование'} записи`}
             onCancel={handleCancel}
             footer={() => (<></>)}
+            className={"max-w-sm"}
         >
            <RowForm handleCancel={handleCancel}/>
         </Modal>)

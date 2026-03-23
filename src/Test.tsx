@@ -14,7 +14,7 @@ function Test() {
     const setOpenModal = ()=> setOpenAddRowModal(true)
   return (
       <div className={'p-20 bg-amber-400 w-full flex flex-col items-center justify-center'}>
-          <div className={'flex flex-col items-start justify-center gap-5'}>
+          <div className={'flex flex-col items-start justify-center gap-5 overflow-x-auto'}>
               <div className={'flex gap-5'}>
                   <AddRowButton onClick={setOpenModal}/>
                   <SearchInput />

@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {Button, Form, Input, Space, DatePicker} from 'antd';
+import {Button, Form, Input, DatePicker, InputNumber} from 'antd';
 import {DataType} from "../table/MainTable";
 import useRowData from "../../store/useRowData";
 import { useForm, Controller } from 'react-hook-form';
@@ -17,12 +17,12 @@ const RowForm: React.FC<Props> = memo(({handleCancel}) => {
     const {changeRow, addNewRow} = useTableData();
     const { control, handleSubmit, formState: { errors } } = useForm<RowFormType>({
         defaultValues: rowData
-        ? { ...rowData, age: String(rowData.age) } // Приведение к строке
-        : { key: '', name: '', date: '', age: '' } ?? {
+            ? { ...rowData, age: rowData.age }
+            : { key: '', name: '', date: '', age: 0 } ?? {
             key: '',
             name: '',
             date: '',
-            age: ''
+            age: 0
         },
         resolver: zodResolver(tableRowSchema),
     });
@@ -33,12 +33,12 @@ const RowForm: React.FC<Props> = memo(({handleCancel}) => {
         };
         const dataForSubmit = rowData? data: dataWithKey
         rowData ? changeRow(dataForSubmit): addNewRow(dataForSubmit);
-       handleCancel()
+        handleCancel()
     }
 
 
     return (
-        <Form name="RowForm" id="RowForm" layout="vertical" onFinish={handleSubmit(onSubmit)}>
+        <Form name="RowForm" id="RowForm" layout="vertical" onFinish={handleSubmit(onSubmit)} className={"mt-5"}>
             <Form.Item<DataType>
                 label="Имя"
                 name="name"
@@ -52,47 +52,55 @@ const RowForm: React.FC<Props> = memo(({handleCancel}) => {
                 />
             </Form.Item>
 
-            <Form.Item<DataType>
-                label="Дата"
-                name="date"
-            >
-                <Controller
+            <div className={"flex flex-row gap-5"}>
+                <Form.Item<DataType>
+                    label="Дата"
                     name="date"
-                    control={control}
-                    rules={{ required: 'Дата обязательна' }}
-                    render={({ field, fieldState }) => (
-                        <>
-                            <DatePicker
-                                {...field}
-                                format={'DD.MM.YYYY'}
-                                status={fieldState.error ? 'error' : ''}
-                                onChange={(date) => field.onChange(date)}
-                            />
-                            {fieldState.error && (
-                                <div style={{ color: 'red' }}>{fieldState.error.message}</div>
-                            )}
-                        </>
-                    )}
-                />
-            </Form.Item>
+                >
+                    <Controller
+                        name="date"
+                        control={control}
+                        rules={{ required: 'Дата обязательна' }}
+                        render={({ field, fieldState }) => (
+                            <>
+                                <DatePicker
+                                    {...field}
+                                    format={'DD.MM.YYYY'}
+                                    status={fieldState.error ? 'error' : ''}
+                                    onChange={(date) => field.onChange(date)}
+                                    placeholder={"Введите дату"}
+                                />
+                                {fieldState.error && (
+                                    <div style={{ color: 'red' }}>{fieldState.error.message}</div>
+                                )}
+                            </>
+                        )}
+                    />
+                </Form.Item>
 
-            <Form.Item<DataType>
-                label="Возраст"
-                name="age"
-                validateStatus={errors.age ? 'error' : ''}
-                help={errors.age?.message}
-            >
-                <Controller
+                <Form.Item<DataType>
+                    label="Возраст"
                     name="age"
-                    control={control}
-                    render={({ field }) => <Input {...field } placeholder="Введите возраст" />}
-                />
+                    validateStatus={errors.age ? 'error' : ''}
+                    help={errors.age?.message}
+                >
+                    <Controller
+                        name="age"
+                        control={control}
+                        render={({ field }) =>
+                            <InputNumber {...field } placeholder="Возраст"
 
-            </Form.Item>
-            <Space size="medium">
+                            />}
+                    />
+
+                </Form.Item>
+            </div>
+
+
+            <div className={"flex gap-5 w-full justify-end mt-5"}>
                 <Button onClick={handleCancel} type="default">Отмена</Button>
-                <Button type="default" htmlType="submit">Сохранить</Button>
-            </Space>
+                <Button type="primary" htmlType="submit">Сохранить</Button>
+            </div>
 
         </Form>
     )

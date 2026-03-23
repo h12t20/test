@@ -11,8 +11,8 @@ import useSearchTableData from "../../store/useSearchTableData";
 export type DataType = {
     key: Key;
     name: string;
-    date: dayjs.Dayjs;
-    age: string;
+    date: dayjs.Dayjs ;
+    age: number;
 }
 
 const MainTable: React.FC = memo(() => {
@@ -24,15 +24,15 @@ const MainTable: React.FC = memo(() => {
     const editRowHandler = useCallback((rowData:DataType)=>editRow(rowData), [editRow])
     const filteredTableData = tableData?.filter(data =>
             data.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-            data.date.format('DD.MM.YYYY').toLowerCase().includes(searchValue.toLowerCase()) ||
-            data.age.toLowerCase().includes(searchValue.toLowerCase())
+            data.date?.format('DD.MM.YYYY').toLowerCase().includes(searchValue.toLowerCase()) ||
+            String(data.age).includes(searchValue.toLowerCase())
         )
     const columns: TableColumnsType<DataType> = [
         {
             title: 'Имя',
             dataIndex: 'name',
             defaultSortOrder: 'descend',
-            sorter: (a, b) => a.name > b.name? -1: 1,
+            sorter: (a, b) => a.name < b.name? -1: 1,
         },
         {
             title: 'Дата',
@@ -41,13 +41,13 @@ const MainTable: React.FC = memo(() => {
             render: (text) => (
                 text.format('DD.MM.YYYY')
             ),
-            sorter: (a, b) => a.date > b.date? -1: 1,
+            sorter: (a, b) => (a.age) < (b.age)? -1: 1,
         },
         {
             title: 'Возраст',
             dataIndex: 'age',
             defaultSortOrder: 'descend',
-            sorter: (a, b) => a.age > b.age? -1: 1,
+            sorter: (a, b) => (a.age) - (b.age),
         },
         {
             title: 'Действие',
@@ -69,6 +69,7 @@ const MainTable: React.FC = memo(() => {
             columns={columns}
             dataSource={filteredTableData}
             showSorterTooltip={{ target: 'sorter-icon' }}
+            className={"w-max"}
         />
     );
 })

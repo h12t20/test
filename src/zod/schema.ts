@@ -9,15 +9,13 @@ export const tableRowSchema = z.object({
         .refine((val) => val.trim().length > 0, { message: 'Поле не может состоять только из пробелов' })
         .refine((val) => /[a-zA-Zа-яА-Я]/.test(val), { message: 'Допускаются только буквы' }),
     date: z
-            .custom<Dayjs>((val) => dayjs.isDayjs(val), "Выберите дату")
-            .refine((val) => val.isValid(), "Некорректная дата"),
+        .custom<Dayjs>((val) => dayjs.isDayjs(val), "Выберите дату")
+        .refine((val) => val.isValid(), "Некорректная дата"),
     age: z
-        .string() // Антед Input возвращает строку
+        .number({ message: "Некорректный возраст" })
         .min(1, 'Обязательное поле')
-        .refine((val) => !isNaN(parseFloat(val)), { message: 'Должно быть числом' })
-        .refine((val) => +val>18 , { message: 'Должно быть больше 18' })
-        .refine((val) => Number.isInteger(+val) , { message: 'Должно быть целое число' })
-        .refine((val) => (+val>18) && (+val<100) , { message: 'Возраст должен быть больше 18 и меньше 100' })
+        .refine((val) => val>18 , { message: 'Слишком маленький' })
+        .refine((val) => val<100 , { message: 'Слишком старый' })
 });
 
 export type RowFormType = z.infer<typeof tableRowSchema>;
