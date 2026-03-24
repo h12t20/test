@@ -67,7 +67,7 @@ const MainTable: React.FC = memo(() => {
     ];
     return (
             <Table<DataType>
-                className="[&_.ant-table]:text-[10px] md:[&_.ant-table]:text-sm"
+                className="[&_.ant-table]:text-[12px] md:[&_.ant-table]:text-sm"
                 columns={columns}
                 dataSource={filteredTableData}
                 showSorterTooltip={{ target: 'sorter-icon' }}
