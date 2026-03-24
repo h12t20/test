@@ -35,7 +35,7 @@ const MainTable: React.FC = memo(() => {
             width: 100, // Фиксированная ширина
             sorter: (a, b) => a.name < b.name? -1: 1,
             render: (text) => (
-                <div className="whitespace-normal break-all min-w-[100px]">
+                <div className="whitespace-normal break-words min-w-[100px]">
                     {text}
                 </div>
             ),
