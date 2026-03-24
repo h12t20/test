@@ -34,11 +34,6 @@ const MainTable: React.FC = memo(() => {
             defaultSortOrder: 'descend',
             width: 100, // Фиксированная ширина
             sorter: (a, b) => a.name < b.name? -1: 1,
-            render: (text) => (
-                <div className="whitespace-normal break-words min-w-[100px]">
-                    {text}
-                </div>
-            ),
         },
         {
             title: 'Дата',
