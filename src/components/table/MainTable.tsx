@@ -76,7 +76,7 @@ const MainTable: React.FC = memo(() => {
                 columns={columns}
                 dataSource={filteredTableData}
                 showSorterTooltip={{ target: 'sorter-icon' }}
-                tableLayout="fixed"
+             //   tableLayout="fixed"
             />
     );
 })
