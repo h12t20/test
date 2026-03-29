@@ -5,7 +5,7 @@ export const tableRowSchema = z.object({
     key: z.any(),
     name: z.string()
         .min(1, { message: 'Поле обязательно для заполнения' })
-        .max(50, { message: 'Допускается не более 50 символов'})
+        .max(30, { message: 'Допускается не более 30 символов'})
         .refine((val) => val.trim().length > 0, { message: 'Поле не может состоять только из пробелов' })
         .refine((val) => /[a-zA-Zа-яА-Я]/.test(val), { message: 'Допускаются только буквы' }),
     date: z
