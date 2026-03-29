@@ -11,6 +11,7 @@ const AddRowButton: React.FC = memo(() => {
         <Input
             placeholder="Поиск по всем полям"
             onChange={handleSearch}
+            className={'text-[12px] md:text-sm'}
         />
     )
 

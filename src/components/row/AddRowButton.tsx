@@ -5,7 +5,7 @@ type Props = {
 }
 const AddRowButton: React.FC<Props> = memo(({onClick}) => {
     return (
-        <Button type="primary" onClick={onClick}>Добавить строку</Button>
+        <Button type="primary" onClick={onClick} className={'text-[12px] md:text-sm'}>Добавить строку</Button>
         )
 
 })

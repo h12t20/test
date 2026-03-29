@@ -32,9 +32,9 @@ const MainTable: React.FC = memo(() => {
             title: 'Имя',
             dataIndex: 'name',
             defaultSortOrder: 'descend',
-            width: 130, // Фиксированная ширина
+            width: 120, // Фиксированная ширина
             sorter: (a, b) => a.name < b.name? -1: 1,
-            className: 'max-w-[130px] break-words whitespace-normal',
+            className: 'max-w-[120px] break-words whitespace-normal',
         },
         {
             title: 'Дата',
@@ -68,7 +68,7 @@ const MainTable: React.FC = memo(() => {
     ];
     return (
             <Table<DataType>
-                className="[&_.ant-table]:text-[11px] md:[&_.ant-table]:text-sm"
+                className="[&_.ant-table]:text-[10px] md:[&_.ant-table]:text-sm"
                 columns={columns}
                 dataSource={filteredTableData}
                 showSorterTooltip={{ target: 'sorter-icon' }}
