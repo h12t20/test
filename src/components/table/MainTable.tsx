@@ -32,9 +32,9 @@ const MainTable: React.FC = memo(() => {
             title: 'Имя',
             dataIndex: 'name',
             defaultSortOrder: 'descend',
-            width: 150, // Фиксированная ширина
+            width: 130, // Фиксированная ширина
             sorter: (a, b) => a.name < b.name? -1: 1,
-            className: 'max-w-[150px] break-words whitespace-normal',
+            className: 'max-w-[130px] break-words whitespace-normal',
         },
         {
             title: 'Дата',
